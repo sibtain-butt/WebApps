@@ -1,0 +1,139 @@
+﻿@model ProductViewModel
+
+
+<div class="card shadow border-0 my-4">
+
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+
+                <h2 class="text-primary py-2"> Create New Product </h2>
+                @*<h2 class="text-primary"> Create New Category </h2>*@
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body p-4">
+
+        <form method="post" class="row">
+            @*<input asp-for="Id" hidden />*@ @*this Id means -> int CategoryModelClass.Id <-*@
+            <div class="border p-3">
+
+
+                @*<div class="form-floating py-2 col-12">
+                <label asp-for="Name" class="ms-2"> Name </label>
+                <input asp-for="Name" class="form-control border-0 shadow" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                </div>*@
+                @*<div asp-validation-summary="ModelOnly"></div>*@
+                <div class="mb-3 row p-1 col-12">
+                    @*<label class="p-0"> Category Name </label>
+                    <input type="text" class="form-control" />*@
+                    <label asp-for="ProductModelClass.Title" class="p-0"> Title </label>
+                    <input asp-for="ProductModelClass.Title" class="form-control" />
+                    <span asp-validation-for="ProductModelClass.Title" class="text-danger"></span>
+                </div>
+
+                @*<div class="form-floating py-2 col-12">
+                <label asp-for="DisplayOrder" class="ms-2"> Display Order </label>
+                <input asp-for="DisplayOrder" class="form-control border-0 shadow" />
+                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                </div>*@
+                <div class="mb-3 row p-1 col-12">
+                    @*<label class="p-0"> Display Order </label>
+                    <input type="text" class="form-control" />*@
+                    <label asp-for="ProductModelClass.Description" class="p-0"> Description </label>
+                    <input asp-for="ProductModelClass.Description" class="form-control" />
+                    <span asp-validation-for="ProductModelClass.Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 p-1 col-12">
+
+                    <label asp-for="ProductModelClass.ISBN" class="p-0"> ISBN </label>
+                    <input asp-for="ProductModelClass.ISBN" class="form-control" />
+                    <span asp-validation-for="ProductModelClass.ISBN" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3 p-1 col-12">
+
+                    <label asp-for="ProductModelClass.Author" class="p-0"> Author </label>
+                    <input asp-for="ProductModelClass.Author" class="form-control" />
+                    <span asp-validation-for="ProductModelClass.Author" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3 p-1 col-12">
+
+                    <label asp-for="ProductModelClass.ListPrice" class="p-0"> List Price </label>
+                    <input asp-for="ProductModelClass.ListPrice" class="form-control" />
+                    <span asp-validation-for="ProductModelClass.ListPrice" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3 p-1 col-12">
+
+                    <label asp-for="ProductModelClass.Price" class="p-0"> Price for 1-50 </label>
+                    <input asp-for="ProductModelClass.Price" class="form-control" />
+                    <span asp-validation-for="ProductModelClass.Price" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3 p-1 col-12">
+
+                    <label asp-for="ProductModelClass.Price50" class="p-0"> Price for 50+ </label>
+                    <input asp-for="ProductModelClass.Price50" class="form-control" />
+                    <span asp-validation-for="ProductModelClass.Price50" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3 p-1 col-12">
+
+                    <label asp-for="ProductModelClass.Price100" class="p-0"> Price for 100+ </label>
+                    <input asp-for="ProductModelClass.Price100" class="form-control" />
+                    <span asp-validation-for="ProductModelClass.Price100" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3 p-1 col-12">
+
+                    <label asp-for="ProductModelClass.CategoryId" class="p-0"></label>
+                    @*ViewBag.SelectListItemCategory*@
+                    @*<select asp-for="CategoryId" asp-items="ViewBag.SelectListItemCategory" class="form-select">*@
+                    @*@(ViewData["SelectListItemCategory"] as IEnumerable<SelectListItem>)*@
+                    @*<select asp-for="CategoryId" asp-items="@(ViewData["SelectListItemCategory"] as IEnumerable<SelectListItem>)" class="form-select">
+                        <option disabled >--Select Category--</option>
+                    </select>*@
+                    <select asp-for="@Model.ProductModelClass.CategoryId" asp-items="@Model.SelectListItemCategoryModelList" class="form-select">
+                        <option disabled>--Select Category--</option>
+                    </select>
+
+                    <span asp-validation-for="ProductModelClass.CategoryId" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control"> Create </button>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                            Back to List
+                        </a>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
