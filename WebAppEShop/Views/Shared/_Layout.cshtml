@@ -4,11 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebAppEShop</title>
+    @*default css link*@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebAppEShop.styles.css" asp-append-version="true" />
+    @*self added css link*@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    @*add new .css links here ... (mean at the bottom)*@
 </head>
 <body>
     <header>
@@ -66,9 +70,19 @@
             &copy; 2023 - WebAppEShop - Made with <i class="bi bi-balloon-heart"></i> by S.i.B
         </div>
     </footer>
+    
+    @*default jscripts*@
+    @*i added DataTable script here above default three scripts 
+    then table itself not showing and i get the
+    Error: uncaught referenceerror jquery is not defined*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @*self added jscripts*@    
+    <script src="https://cdn.tiny.cloud/1/5f5y4ge6a6e4kmatv4jha80xkrqh7pezws08ch544lkz56wd/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @*add new .js scripts here ... (mean at the bottom)*@        
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

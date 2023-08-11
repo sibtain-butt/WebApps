@@ -2,9 +2,32 @@
 {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
 
     <script type="text/javascript">
-        toastr.success('@TempData["tempDataKeySuccess"]');
+        @*SweetAlert2 toast notification*@
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            @*title: 'Signed in successfully'*@
+            title: '@TempData["tempDataKeySuccess"]'
+        })
+        @*toastr alert notification*@
+        @*toastr.success('@TempData["tempDataKeySuccess"]');*@
     </script>
     @*<h2> @TempData["tempDataKeySuccess"]</h2>*@
 }
@@ -16,7 +39,26 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <script type="text/javascript">
-        toastr.error('@TempData["tempDataKeyError"]');
+        @*SweetAlert2 toast notification*@
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            @*title: 'Signed in successfully'*@
+            title: '@TempData["tempDataKeyError"]'
+        })
+        @*toastr alert notification*@
+        @*toastr.error('@TempData["tempDataKeyError"]');*@
     </script>
     @*<h2> @TempData["tempDataKeyError"]</h2>*@
 }

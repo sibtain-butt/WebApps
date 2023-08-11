@@ -5,29 +5,24 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-
                 <h2 class="text-primary py-2"> Product List </h2>
-
             </div>
         </div>
     </div>
 
-
     <div class="card-body p-4">
-
         <div class="row pb-3">
             <div class="col-6">
             </div>
             <div class="col-6 text-end pe-0">
-                <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+                <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
                     <i class="bi bi-plus-circle"></i> Create New Product
                 </a>
             </div>
         </div>
     </div>
 
-    <table class="table table-bordered table-striped">
-
+    <table id="productDataTable" class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
                 <th> Title </th>
@@ -35,13 +30,11 @@
                 <th> Price </th>
                 <th> Author </th>
                 <th> Category </th>
-                
                 <th> @*Add this <th> empty tag for buttons edit/delete*@ </th>
             </tr>
         </thead>
-
-        <tbody>
-
+        <!--replacing self made tableBody<tbody> =to=> DataTable(JavaScript) -->
+        @*<tbody>
             @foreach (var obj in Model)
             {
                 <tr>
@@ -49,10 +42,10 @@
                     <td> @obj.ISBN </td>
                     <td> @obj.ListPrice </td>
                     <td> @obj.Author </td>
-                
+                    <td> @obj.CategoryModelClass!.Name </td>
                     <td>
                         <div class="w-75 btn-group" role="group">
-                            <a asp-controller="Product" asp-action="Edit" asp-route-productId="@obj.Id" class="btn btn-primary mx-2">
+                            <a asp-controller="Product" asp-action="Upsert" asp-route-productId="@obj.Id" class="btn btn-primary mx-2">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </a>
                             <a asp-controller="Product" asp-action="Delete" asp-route-productId="@obj.Id" class="btn btn-danger mx-2">
@@ -62,18 +55,16 @@
                     </td>
                 </tr>
             }
-        </tbody>
+        </tbody>*@
     </table>
-
 
 </div>
 
-
-
-
-
-
-
-
+@*i write this code in _layout.cshtml instead of 
+writing it in all view files of C.R.U.D.cshtml*@
 @*<partial name="_Notification" />*@
 
+<!--self added Script to connect productJS in root folder from DataTable-->
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}

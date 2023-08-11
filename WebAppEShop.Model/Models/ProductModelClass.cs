@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -13,29 +14,38 @@ namespace WebAppEShop.Model.Models
     {
         //[Key] //by-Default Id is primaryKey
         public int Id { get; set; }
-        //[Required] // if i use this [Required] then why i also need to add inline "required"
+        [Required] // if i use this [Required] then why i also need to add inline "required"
         public string? Title { get; set; }
         public string? Description { get; set; }
+        [Required]
         public string? ISBN { get; set; }
+        [Required]
         public string? Author { get; set; }
         
         //[DisplayName("List Price")] // both syntax are same to show display name
-        [Display(Name ="List Price")]
-        [Range(1, 1000)]
+        [Required, Display(Name ="List Price"), Range(1,1000)]
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public double? ListPrice { get; set; }
+        //ListPrice.ToString("C") is changed to this ->
+        //line->    @String.Format("{0:C}", Model.ListPrice) e.g. $123.45
         
-        [DisplayName("Price for 1-50")]
-        [Range(1, 1000)]
+        [Required, DisplayName("Price for 1-50"), Range(1, 1000)]
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public double? Price { get; set; }
-        
+
+        [Required]
         [DisplayName("Price for 50+")]
+        //[RegularExpression(@"^\$(\d{1,3},?(\d{3},?)*\d{3}(\.\d{0,2})|\d{1,3}(\.\d{2})|\.\d{2})$", ErrorMessage = "Invalid price format by regex")]
         [Range(1, 1000)]
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public double? Price50 { get; set; }
-        
+
+        [Required]
         [DisplayName("Price for 100+")]
         [Range(1, 1000)]
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public double? Price100 { get; set; }
-
+        
         public string? ImageUrl { get; set; } // i replacing required with nullcheck?
 
         public int CategoryId { get; set; }

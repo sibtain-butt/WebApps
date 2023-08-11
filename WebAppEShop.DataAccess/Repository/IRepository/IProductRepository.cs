@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,9 @@ namespace WebAppEShop.DataAccess.Repository.IRepository
 {
     public interface IProductRepository : IRepository<ProductModelClass>
     {
-        void Add(ProductModelClass? productModelClass);
+        //void Add(ProductViewModel productViewModel);
+        new void Add(ProductModelClass productModelClass);
+        //void Update(ProductViewModel productViewModel);
         void Update(ProductModelClass productModelClass);
         //void Save(); //i transfer this Save(); to IUnitOfWorkRepository interface
     }

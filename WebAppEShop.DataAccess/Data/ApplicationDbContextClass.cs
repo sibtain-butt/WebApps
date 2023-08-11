@@ -24,6 +24,7 @@ namespace WebAppEShop.DataAccess.Data
                 new CategoryModelClass { Id = 1020, Name = "Mystery", DisplayOrder = 5 },
                 new CategoryModelClass { Id = 1021, Name = "Comedy", DisplayOrder = 6 }
                 );
+            
             modelBuilder.Entity<ProductModelClass>().HasData(
                 new ProductModelClass
                 {

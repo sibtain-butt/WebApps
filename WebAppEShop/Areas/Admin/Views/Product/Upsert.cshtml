@@ -1,0 +1,194 @@
+﻿@model ProductViewModel
+
+
+<div class="card shadow border-0 my-4"> <!-- Main Div -->
+
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+
+                <h2 class="text-primary py-2"> 
+                    @(Model.ProductModelClass!.Id != 0 ? "Update" : "Create") New Product 
+                </h2>
+                <!-- <h2 class="text-primary"> Create New Category </h2> -->
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body p-4"><!--//Div CardBody-->
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="@Model.ProductModelClass.Id" hidden />
+            <input asp-for="@Model.ProductModelClass.ImageUrl" hidden />
+            <!--this Id means -> int CategoryModelClass.Id <- -->
+            <div class="row"><!--//Div Row-->
+
+                <div class="col-7"><!--//Div Col-10-->
+                    <!--//All ProductModelClass Fields ==>-->
+                    <div class="border p-3">
+
+
+                        <!--<div class="form-floating py-2 col-12">
+                        <label asp-for="Name" class="ms-2"> Name </label>
+                        <input asp-for="Name" class="form-control border-0 shadow" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>-->
+                        <!--<div asp-validation-summary="ModelOnly"></div>-->
+                        <div class="mb-3 row p-1 col-12">
+                            <!--<label class="p-0"> Category Name </label>
+                            <input type="text" class="form-control" />-->
+                            <label asp-for="@Model.ProductModelClass.Title" class="p-0"> Title </label>
+                            <input asp-for="@Model.ProductModelClass.Title" class="form-control" />
+                            <span asp-validation-for="@Model.ProductModelClass.Title" class="text-danger"></span>
+                        </div>
+
+                        <!--<div class="form-floating py-2 col-12">
+                        <label asp-for="DisplayOrder" class="ms-2"> Display Order </label>
+                        <input asp-for="DisplayOrder" class="form-control border-0 shadow" />
+                        <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                        </div>-->
+                        <div class="mb-3 row p-1 col-12">
+
+                            <!--<label class="p-0"> Display Order </label>
+                            <input type="text" class="form-control" />-->
+                            <label asp-for="@Model.ProductModelClass.Description" class="p-0"> Description </label>
+                            <textarea asp-for="@Model.ProductModelClass.Description" class="form-control"> </textarea>
+
+                        </div>
+                        <div class="mb-3 p-1 col-12">
+
+                            <label asp-for="@Model.ProductModelClass.ISBN" class="p-0"> ISBN </label>
+                            <input asp-for="@Model.ProductModelClass.ISBN" class="form-control" />
+                            <span asp-validation-for="@Model.ProductModelClass.ISBN" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3 p-1 col-12">
+
+                            <label asp-for="@Model.ProductModelClass.Author" class="p-0"> Author </label>
+                            <input asp-for="@Model.ProductModelClass.Author" class="form-control" />
+                            <span asp-validation-for="@Model.ProductModelClass.Author" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3 p-1 col-12">
+
+                            <label asp-for="@Model.ProductModelClass.ListPrice" class="p-0"> List Price </label>
+                            <input asp-for="@Model.ProductModelClass.ListPrice" class="form-control" />
+                            <span asp-validation-for="@Model.ProductModelClass.ListPrice" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3 p-1 col-12">
+
+                            <label asp-for="@Model.ProductModelClass.Price" class="p-0"> Price for 1-50 </label>
+                            <input asp-for="@Model.ProductModelClass.Price" class="form-control" />
+                            <span asp-validation-for="@Model.ProductModelClass.Price" class="text-danger"></span>
+                            @*<span asp-validation-for="@String.Format("{0:C}", Model.ProductModelClass.Price)" class="text-danger"></span>*@
+                            
+                        </div>
+                        <div class="mb-3 p-1 col-12">
+
+                            <label asp-for="@Model.ProductModelClass.Price50" class="p-0"> Price for 50+ </label>
+                            <input asp-for="@Model.ProductModelClass.Price50" class="form-control" />
+                            <span asp-validation-for="@Model.ProductModelClass.Price50" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3 p-1 col-12">
+
+                            <label asp-for="@Model.ProductModelClass.Price100" class="p-0"> Price for 100+ </label>
+                            <input asp-for="@Model.ProductModelClass.Price100" class="form-control" />
+                            <span asp-validation-for="@Model.ProductModelClass.Price100" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3 p-1 col-12">
+
+                            <label asp-for="@Model.ProductModelClass.CategoryId" class="p-0"></label>
+                            <!--ViewBag.SelectListItemCategory
+                            <select asp-for="CategoryId" asp-items="ViewBag.SelectListItemCategory" class="form-select">
+                            @* @(ViewData["SelectListItemCategory"] as IEnumerable<SelectListItem>)
+                            <select asp-for="CategoryId" asp-items="@(ViewData["SelectListItemCategory"] as IEnumerable<SelectListItem>)" class="form-select"> *@
+                            <option disabled >--Select Category--</option>
+                            </select> -->
+                            <select asp-for="@Model.ProductModelClass.CategoryId" asp-items="@Model.SelectListItemCategoryModelList" class="form-select">
+                                <option disabled selected>--Select Category--</option>
+                            </select>
+
+                            <span asp-validation-for="@Model.ProductModelClass.CategoryId" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3 p-1 col-12">
+
+                            <label asp-for="@Model.ProductModelClass.ImageUrl" class="p-0"> Image Url </label>
+                            <input type="file" name="productFormFile" class="form-control" />
+                            <!--<span asp-validation-for="ProductModelClass!.ImageUrl" class="text-danger"></span>-->
+
+                        </div>
+
+                        <div class="col-12">
+                            <div class="row align-content-between " style="width:100%">
+
+                                <div class="col" style="width:40%">
+
+                                    @if (Model.ProductModelClass.Id != 0)
+                                    {
+                                        <button type="submit" class="btn btn-primary form-control"> Update </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-primary form-control"> Create </button>
+                                    }
+
+                                </div>
+
+                                <div class="col" style="width:40%">
+
+                                    <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                                        Back to List
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        
+
+
+                    </div>
+                    <!--//All ProductModelClass Fields <==-->
+                </div><!--//Div Col-10-->
+
+                <div class="col-5"><!--//Div Col-5-->
+                    <!--//Displaying Image from ImageUrl ==>-->
+                    <img src="@(Model.ProductModelClass.ImageUrl == null ? Model.DefaultImageUrlString : Model.ProductModelClass.ImageUrl)" onerror="@Model.DefaultImageUrlString" alt="Error: No image available or upload image to display!!"
+                    @*<img src="@Model.ProductModelClass.ImageUrl" onloadstart="@Model.DefaultImageUrlString" onload="@Model.DefaultImageUrlString" onerror="@Model.DefaultImageUrlString"*@
+                         style="border-radius:5px; border:1px solid #bbb9b9; width:100%" />
+
+                </div><!--//Div Col-2-->
+
+
+            </div><!--//Div Row-->
+        </form>
+    </div><!--//Div CardBody-->
+
+
+</div><!--//Main Div-->
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
+        });
+    </script>
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

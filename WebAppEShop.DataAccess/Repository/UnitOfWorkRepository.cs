@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,8 +28,8 @@ namespace WebAppEShop.DataAccess.Repository
         
 
         public void Save()
-        {
-            _applicationDbContextClass.SaveChanges();
+        {            
+            _applicationDbContextClass.SaveChanges();            
         }
     }
 }
